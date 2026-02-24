@@ -2,7 +2,7 @@ FROM node:22-alpine AS base
 
 # Install dependencies only when needed
 FROM base AS deps
-RUN apk add --no-cache libc6-compat python3 make g++
+RUN apk update && apk add --no-cache libc6-compat python3 build-base
 WORKDIR /app
 
 COPY package.json package-lock.json* ./
