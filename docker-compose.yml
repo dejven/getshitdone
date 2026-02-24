@@ -1,0 +1,13 @@
+services:
+  getshitdone:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - gsd-data:/app/data
+    restart: unless-stopped
+    environment:
+      - DB_PATH=/app/data/getshitdone.db
+
+volumes:
+  gsd-data:
