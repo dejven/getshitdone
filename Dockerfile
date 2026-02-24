@@ -1,8 +1,8 @@
-FROM node:22-alpine AS base
+FROM node:22-slim AS base
 
 # Install dependencies only when needed
 FROM base AS deps
-RUN apk update && apk add --no-cache libc6-compat python3 build-base
+RUN apt-get update && apt-get install -y --no-install-recommends python3 build-essential && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 
 COPY package.json package-lock.json* ./
@@ -21,7 +21,6 @@ RUN npm run build
 
 # Production image
 FROM base AS runner
-RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 ENV NODE_ENV=production
