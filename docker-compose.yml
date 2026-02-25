@@ -2,7 +2,7 @@ services:
   getshitdone:
     build: .
     ports:
-      - "3000:3000"
+      - "3009:3000"
     volumes:
       - gsd-data:/app/data
     restart: unless-stopped
